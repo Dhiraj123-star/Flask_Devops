@@ -6,3 +6,4 @@ services:
     ports:
       - "5000:5000"
     restart: always
+    pull_policy: always  # Ensures latest image is always pulled
