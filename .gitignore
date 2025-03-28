@@ -1,0 +1,18 @@
+# Python related
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+
+# Docker related
+*.log
+.dockerignore
+__pycache__/
+*.db
+*.sqlite3
+
+# Virtual Environments
+.vscode/
+.idea/
