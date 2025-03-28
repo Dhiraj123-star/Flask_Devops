@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   flask-app:
-    build: .
+    image: dhiraj918106/flask_devops:latest
     ports:
       - "5000:5000"
     restart: always
