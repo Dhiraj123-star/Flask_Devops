@@ -24,7 +24,11 @@ jobs:
           docker tag dhiraj918106/flask_devops dhiraj918106/flask_devops:latest
           docker push dhiraj918106/flask_devops:latest
 
+      - name: Initialize Docker Swarm (if not already initialized)
+        run: |
+          docker swarm init || true
+
       - name: Deploy Docker Stack
         run: |
           docker pull dhiraj918106/flask_devops:latest
-          docker service update --image dhiraj918106/flask_devops:latest flask_stack_flask-app
+          docker stack deploy -c docker-stack.yml flask_stack
