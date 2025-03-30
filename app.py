@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_restx import Api, Resource, fields
 
 app = Flask(__name__)
-api = Api(app, version='1.0', title='Task Management API using Devops with CI/CD', description='A simple Task Management API')
+api = Api(app, version='1.0', title='Task Management API using Devops with CI/CD(Docker Swarm)', description='A simple Task Management API')
 
 # Task Model
 task_model = api.model('Task', {

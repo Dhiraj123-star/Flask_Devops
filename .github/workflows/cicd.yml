@@ -6,10 +6,10 @@ on:
       - main
 
 jobs:
-  build-and-push:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Set up Docker Buildx
@@ -18,8 +18,13 @@ jobs:
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
 
-      - name: Build and push Docker image
+      - name: Build and Push Docker Image
         run: |
           docker build -t dhiraj918106/flask_devops .
           docker tag dhiraj918106/flask_devops dhiraj918106/flask_devops:latest
-          docker push dhiraj918106/flask_devops
+          docker push dhiraj918106/flask_devops:latest
+
+      - name: Deploy Docker Stack
+        run: |
+          docker pull dhiraj918106/flask_devops:latest
+          docker service update --image dhiraj918106/flask_devops:latest flask_stack_flask-app

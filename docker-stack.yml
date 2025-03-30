@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  flask-app:
+    image: dhiraj918106/flask_devops:latest  # Pulls latest image from Docker Hub
+    ports:
+      - "5000:5000"
+    deploy:
+      replicas: 3  # Run 3 instances of the app for high availability
+      restart_policy:
+        condition: any
+      update_config:
+        parallelism: 1
+        delay: 10s
+      rollback_config:
+        parallelism: 1
+    networks:
+      - flask_network
+
+networks:
+  flask_network:
+    driver: overlay
